@@ -12,9 +12,9 @@ import { createClient } from "redis";
 import { Server } from "socket.io";
 import "express-async-errors";
 import * as process from "node:process";
+import { CustomError, type IErrorResponse } from "@global/helpers/errorHandler.helper";
 import { config } from "@root/config";
 import applicationRoutes from "@root/routes";
-import { CustomError, type IErrorResponse } from "@global/helpers/errorHandler.helper";
 import bunyanMiddleware from "bunyan-middleware";
 
 const log: Logger = config.createLogger("server");

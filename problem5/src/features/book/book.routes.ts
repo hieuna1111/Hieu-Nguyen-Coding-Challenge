@@ -1,6 +1,6 @@
-import express, { type Router } from "express";
 import { BookController } from "@book/book.controller";
 import { rateLimiter } from "@middlewares/rateLimiter.middleware";
+import express, { type Router } from "express";
 
 class BookRoutes {
   private router: Router;
@@ -13,10 +13,10 @@ class BookRoutes {
 
   public routes(): Router {
     this.router.post("/books", this.bookController.create);
-    this.router.get("/books", rateLimiter(1, 500), this.bookController.get);
-    this.router.get("/books/:id", rateLimiter(1, 500), this.bookController.get);
-    this.router.patch("/books/:id", rateLimiter(1, 500), this.bookController.update);
-    this.router.delete("/books/:id", this.bookController.delete);
+    this.router.get("/books", rateLimiter(1, 500), this.bookController.list);
+    this.router.get("/books/:book_id", rateLimiter(1, 500), this.bookController.get);
+    this.router.patch("/books/:book_id", rateLimiter(1, 500), this.bookController.update);
+    this.router.delete("/books/:book_id", this.bookController.delete);
     return this.router;
   }
 }

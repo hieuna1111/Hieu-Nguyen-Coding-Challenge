@@ -1,6 +1,6 @@
-import { type Model, Schema, model } from "mongoose";
-import { IBookDocument } from "@book/book.interface";
+import type { IBookDocument } from "@book/book.interface";
 import { BookStatusConst } from "@global/definitions/constant.definition";
+import { type Model, Schema, model } from "mongoose";
 
 const bookSchema: Schema<IBookDocument> = new Schema(
   {
@@ -11,6 +11,7 @@ const bookSchema: Schema<IBookDocument> = new Schema(
     publisher: { type: String, required: true },
     price: { type: Number, required: true },
     status: { type: String, required: true, enum: Object.values(BookStatusConst) },
+    deleted_at: { type: Date, default: null },
   },
   {
     timestamps: {
@@ -21,6 +22,15 @@ const bookSchema: Schema<IBookDocument> = new Schema(
 );
 
 bookSchema.index({ status: 1 });
+
+bookSchema.index(
+  { title: "text", description: "text" },
+  {
+    weights: { title: 1, description: 2 },
+    default_language: "none",
+    name: "BookTextIndex",
+  },
+);
 
 const BookModel: Model<IBookDocument> = model<IBookDocument>("book", bookSchema, "books");
 
