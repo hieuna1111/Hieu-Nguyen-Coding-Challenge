@@ -1,9 +1,9 @@
+import type { IBookDocument, ICreateBookRequest, IListBookRequest, IUpdateBookRequest } from "@book/book.interface";
 import type { IPaginationResponse } from "@global/definitions/interface.definition";
 import { BadRequestError } from "@global/helpers/errorHandler.helper";
 import { bookRepository } from "@repositories/book.repository";
-import type { FilterQuery } from "mongoose";
-import type { IBookDocument, ICreateBookRequest, IListBookRequest, IUpdateBookRequest } from "@book/book.interface";
 import _ from "lodash";
+import type { FilterQuery } from "mongoose";
 
 class BookService {
   public async create(dto: ICreateBookRequest): Promise<IBookDocument> {
@@ -75,8 +75,6 @@ class BookService {
   }
 
   public async softDelete(bookId: string): Promise<boolean> {
-    console.log("1111");
-
     const isDeleted = await bookRepository.softDelete(bookId);
     if (!isDeleted) {
       throw new BadRequestError(`"book_id" not found`);

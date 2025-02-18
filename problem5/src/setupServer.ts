@@ -1,21 +1,16 @@
 import http from "node:http";
-import { createAdapter } from "@socket.io/redis-adapter";
 import type Logger from "bunyan";
 import compression from "compression";
-import cookieSession from "cookie-session";
 import cors from "cors";
 import { type Application, type NextFunction, type Request, type Response, json, urlencoded } from "express";
 import helmet from "helmet";
 import hpp from "hpp";
 import HTTP_STATUS from "http-status-codes";
-import { createClient } from "redis";
-import { Server } from "socket.io";
 import "express-async-errors";
 import * as process from "node:process";
 import { CustomError, type IErrorResponse } from "@global/helpers/errorHandler.helper";
 import { config } from "@root/config";
 import applicationRoutes from "@root/routes";
-import bunyanMiddleware from "bunyan-middleware";
 
 const log: Logger = config.createLogger("server");
 

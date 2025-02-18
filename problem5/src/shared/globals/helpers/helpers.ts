@@ -1,15 +1,5 @@
-import getVideoId from "@bytelucas/video-link-parser";
-import { config } from "@root/config";
-import type Logger from "bunyan";
 import Joi, { type CustomHelpers } from "joi";
 import mongoose from "mongoose";
-import { v4 as uuidV4 } from "uuid";
-
-interface IUrlExtraction {
-  siteName: string;
-  searchParams: URLSearchParams;
-}
-const log: Logger = config.createLogger("helpers");
 
 class Helpers {
   public parseJson(prop: string): any {

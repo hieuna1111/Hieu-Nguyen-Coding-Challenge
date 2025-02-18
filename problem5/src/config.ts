@@ -1,10 +1,8 @@
 import * as process from "node:process";
 import { envalidCustom } from "@global/helpers/envalidCustom.helper";
 import bunyan from "bunyan";
-import cloudinary from "cloudinary";
 import dotenv from "dotenv";
 import { url, bool, cleanEnv, num, port, str } from "envalid";
-import type admin from "firebase-admin";
 
 dotenv.config({});
 

@@ -104,8 +104,3 @@ dist
 
 # TernJS port file
 .tern-port
-
-# credential
-# get base64: base64 -i credentials/firebase/*.json
-credentials/firebase
-credentials/apple

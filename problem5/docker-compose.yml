@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # Service cho ứng dụng Node.js
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: book-api
+    ports:
+      - "3005:3005"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URI=mongodb://mongodb:27017/bookstore
+      - PORT=3005
+      - CLIENT_URL=http://localhost:3000
+      - RATE_LIMIT_MAX_REQUESTS=100
+      - RATE_LIMIT_WINDOW_MS=1000
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - book-network
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:7.0.7
+    container_name: book-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - book-network
+    restart: unless-stopped
+    command: mongod --quiet --logpath /dev/null
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+networks:
+  book-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local
