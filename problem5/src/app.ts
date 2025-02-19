@@ -14,7 +14,7 @@ class Application {
 
   private loadConfig(): void {
     new Config();
-    // load config for firebase admin ...
+    // load config such as firebase admin, etc...
   }
 }
 

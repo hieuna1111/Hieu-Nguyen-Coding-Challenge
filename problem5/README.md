@@ -10,6 +10,7 @@ A RESTful API for managing book inventory built with Node.js, Express, and Mongo
 - Error handling
 - Soft delete functionality
 - Search functionality with text indexing
+- Apply decorator and abstract class such as validation, base repository to reuse code
 - Docker support for easy deployment
 - TypeScript for type safety
 
