@@ -27,8 +27,8 @@ A RESTful API for managing book inventory built with Node.js, Express, and Mongo
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd book-management-api
+git clone https://github.com/bytelucas/Hieu-Nguyen
+cd problem5
 ```
 
 2. Install dependencies:
