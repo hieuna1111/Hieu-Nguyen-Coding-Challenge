@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "pm2:start": "NODE_ENV=production pm2 start ./build/src/app.js -i 1 --attach | ./node_modules/.bin/bunyan",
+    "pm2:start": "NODE_ENV=production pm2 start ./build/src/app.js --name 'bytelucas:problem5:book-api' -i 1 --attach | ./node_modules/.bin/bunyan",
     "pm2:stop": "pm2 stop all",
     "pm2:delete": "pm2 delete all",
     "dev": "nodemon -r tsconfig-paths/register src/app.ts | ./node_modules/.bin/bunyan",
